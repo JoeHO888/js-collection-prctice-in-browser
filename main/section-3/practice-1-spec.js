@@ -34,3 +34,21 @@ describe('practice-3-1', () => {
     ]);
   });
 });
+
+
+function createUpdatedCollection(collectionA, objectB){
+	var arrayB = objectB["value"];
+	
+	for (var i = 0; i < collectionA.length; i++) { 
+		var e = collectionA[i]["key"];
+		var value = collectionA[i]["count"];
+		for (var j = 0; j < arrayB.length; j++) { 
+			if (e == arrayB[j]){
+				value -=1;
+			}
+		}
+		collectionA[i] = {key: e, count: value};
+	}
+	console.log(collectionA);
+	return collectionA
+}
