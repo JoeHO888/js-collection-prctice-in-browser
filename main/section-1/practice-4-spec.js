@@ -15,3 +15,23 @@ describe('practice-1-4', () => {
     expect(result).toEqual(['a', 'e', 'f', 'd']);
   });
 });
+
+
+function collectSameElements(collectionA, collectionB) {
+  var c = new Array();
+  collectionB = collectionB.value;
+  for(var i = 0; i<collectionA.length ; i++)
+  {
+    for(var j = 0; j<collectionB.length ; j++)
+    {
+      if (collectionA[i].key == collectionB[j])
+      {
+        c.push(collectionA[i].key);
+        break;
+      }
+    }
+  }
+  console.log(c);
+  return c;
+
+}
