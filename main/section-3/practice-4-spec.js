@@ -87,7 +87,7 @@ function countSameElements(collection) {
 	
     if (count_object.hasOwnProperty(property)) {
 		
-        count_array.push({name: property, summary: count_object[property]});
+        count_array.push({key: property, count: count_object[property]});
     }
   }
   return count_array;
