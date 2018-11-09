@@ -32,3 +32,33 @@ describe('practice-2-2', () => {
     ]);
   });
 });
+
+
+function countSameElements(collection) {
+  var count_object = {};
+  var count_array = [];
+  for(var i = 0; i<collection.length ; i++)
+  {
+	  if (count_object.hasOwnProperty(collection[i]) && collection[i].indexOf('-') == -1)
+	  {
+		 count_object[collection[i]] +=1;
+      }else if(!(count_object.hasOwnProperty(collection[i])) && collection[i].indexOf('-') == -1){
+		  count_object[collection[i]] =1;
+	  }
+	  
+	  if (collection[i].indexOf('-') > -1){
+		  count_object[collection[i].substring(0,collection[i].indexOf('-'))] = parseInt(collection[i].substring(collection[i].indexOf('-')+1,collection[i].length));
+	  }
+  }
+  
+  for (var property in count_object) {
+    if (count_object.hasOwnProperty(property)) {
+        count_array.push({key: property, count: count_object[property]});
+    }
+  }
+  //console.log(count_object);
+  return count_array;
+}
+
+
+
