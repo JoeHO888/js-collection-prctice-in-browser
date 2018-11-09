@@ -35,3 +35,109 @@ describe('practice-3-4', () => {
     ]);
   });
 });
+
+
+function createUpdatedCollection(collectionA, objectB){
+	collectionA = countSameElements(collectionA);
+	console.log(collectionA);
+	
+	var arrayB = objectB["value"];
+	
+	for (var i = 0; i < collectionA.length; i++) { 
+		var e = collectionA[i]["key"];
+		var decrement = Math.floor(collectionA[i]["count"]/3); 
+		var value = collectionA[i]["count"];
+		for (var j = 0; j < arrayB.length; j++) { 
+			if (e == arrayB[j]){
+				value -=decrement;
+			}
+		}
+		collectionA[i] = {key: e, count: value};
+	}
+	return collectionA
+}
+
+function countSameElements(collection) {
+  var count_object = {};
+  var count_array = [];
+  for(var i = 0; i<collection.length ; i++)
+  {
+	if (hasSpecialCharacter(collection[i])){
+		var key = extractCharacter(collection[i]);
+		var value = parseInt(extractMiddleNumber(collection[i]));
+		
+		
+		if (count_object.hasOwnProperty(key)){
+			count_object[key] +=value;
+		}else{
+			count_object[key] =value;
+		}
+		
+	}else{
+		if (count_object.hasOwnProperty(collection[i])){
+			count_object[collection[i]] +=1;
+		}else{
+			count_object[collection[i]] =1;
+		}
+		
+	}
+
+  }
+  for (var property in count_object) {
+	
+    if (count_object.hasOwnProperty(property)) {
+		
+        count_array.push({name: property, summary: count_object[property]});
+    }
+  }
+  return count_array;
+}
+
+
+
+function hasSpecialCharacter(str){
+	var specialCharacters = '?;:][=+-';
+	for (var i = 0; i<specialCharacters.length ; i++){
+		if (str.indexOf(specialCharacters.substring(i,i+1)) > -1 ){
+			return true
+		}
+	}
+	return false
+}
+
+
+function extractMiddleNumber(str){
+	var startIndex = 0;
+	var endIndex = str.length;
+	
+	var specialCharacters = '?;:][=+-';
+	
+	for (var i = 0; i<specialCharacters.length ; i++){
+		if (str.indexOf(specialCharacters[i]) > -1 ){
+			startIndex = str.indexOf(specialCharacters[i])+1;
+		}
+	}
+	
+	for (var i = 0; i<specialCharacters.length ; i++){
+		if (str.substring(startIndex,str.length).indexOf(specialCharacters[i]) > -1 ){
+			endIndex = str.substring(startIndex,str.length).indexOf(specialCharacters[i])+startIndex;
+		}
+	}
+	return str.substring(startIndex,endIndex)
+}
+
+
+function extractCharacter(str){
+	var startIndex = 0;
+
+	
+	var specialCharacters = '?;:][=+-';
+	
+	for (var i = 0; i<specialCharacters.length ; i++){
+		if (str.indexOf(specialCharacters[i]) > -1 ){
+			startIndex = str.indexOf(specialCharacters[i]);
+		}
+	}
+
+	return str.substring(0,startIndex)
+}

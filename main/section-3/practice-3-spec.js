@@ -35,3 +35,45 @@ describe('practice-3-3', () => {
     ]);
   });
 });
+
+function countSameElements(collection) {
+  var count_object = {};
+  var count_array = [];
+  for(var i = 0; i<collection.length ; i++)
+  {
+	  if (count_object.hasOwnProperty(collection[i]))
+	  {
+		 count_object[collection[i]] +=1;
+      }else{
+		  count_object[collection[i]] =1;
+	  }
+  }
+  
+  for (var property in count_object) {
+    if (count_object.hasOwnProperty(property)) {
+        count_array.push({key: property, count: count_object[property]});
+    }
+  }
+  return count_array;
+}
+
+function createUpdatedCollection(collectionA, objectB){
+	collectionA = countSameElements(collectionA);
+	
+	var arrayB = objectB["value"];
+	
+	for (var i = 0; i < collectionA.length; i++) { 
+		var e = collectionA[i]["key"];
+		var decrement = Math.floor(collectionA[i]["count"]/3); 
+		var value = collectionA[i]["count"];
+		for (var j = 0; j < arrayB.length; j++) { 
+			if (e == arrayB[j]){
+				value -=decrement;
+			}
+		}
+		collectionA[i] = {key: e, count: value};
+	}
+	console.log(collectionA);
+	return collectionA
+}
+
