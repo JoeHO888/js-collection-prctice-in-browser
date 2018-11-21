@@ -1,5 +1,6 @@
 'use strict';
 
-function collectSameElements(collectionA, objectB) {
-  return 'Implement the practice require, and begin changing code in this row';
-}
+
+
+
+const collectSameElements = (collectionA, collectionB)=>collectionA.filter(a=>collectionB.value.includes(a.key)).map(_=>_.key)
